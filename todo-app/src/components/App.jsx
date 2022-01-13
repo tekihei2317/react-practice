@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { fetchTodos } from "../services/fetch-todos";
+import { useRef } from "react";
+import { useTodo } from "../hooks/use-todo";
 
 const TodoTitle = ({ title, as }) => {
   if (as === "h1") return <h1>{title}</h1>;
@@ -28,26 +28,27 @@ const TodoList = ({ todoList }) => {
 };
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const todoList = await fetchTodos();
-      setTodoList(todoList);
-    };
-    fetchData();
-  }, []);
-
+  const { todoList, addTodoListItem } = useTodo();
   const incompletedList = todoList.filter((todo) => !todo.done);
   const completedList = todoList.filter((todo) => todo.done);
+
+  const inputElement = useRef(null);
+  const handleAddTodoListItem = () => {
+    if (inputElement.current.value === "") return;
+
+    addTodoListItem(inputElement.current.value);
+    inputElement.current.value = "";
+  };
+
+  console.log("TODOリスト:", todoList);
 
   return (
     <>
       <h1>TODO進捗管理</h1>
       <TodoTitle title="TODOタイトル管理" as="h1" />
 
-      <textarea />
-      <button>+ TODOを追加</button>
+      <textarea ref={inputElement} />
+      <button onClick={handleAddTodoListItem}>+ TODOを追加</button>
 
       <TodoTitle title="未完了TODOリスト" as="h2" />
       <TodoList todoList={incompletedList} />
