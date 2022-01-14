@@ -3,7 +3,7 @@
     {
       "id": 1,
       "content": "Create React Appをインストールする",
-      "done": true
+      "done": false
     },
     {
       "id": 2,
@@ -18,17 +18,12 @@
     {
       "content": "hoge",
       "id": "01FS98P1YBH1K9ESCAJTFW7JCY",
-      "done": false
+      "done": true
     },
     {
       "content": "fuga",
       "id": "01FS98PH6JPDZMME1XAY2QGWZY",
-      "done": false
-    },
-    {
-      "content": "piyo",
-      "id": "01FS98PM95S8VJVFPFKHY30HW9",
-      "done": false
+      "done": true
     }
   ]
 }
